@@ -134,5 +134,3 @@ function populateforcast(forecast, forecastx){
           }
         }
 }
-	
-	

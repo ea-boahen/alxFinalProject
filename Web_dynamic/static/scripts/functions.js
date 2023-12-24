@@ -45,7 +45,7 @@ function submitForm() {
   // Perform AJAX POST request
   $.ajax({
       type: "POST",
-      url: "http://127.0.0.1:5000/api/v1/persons",
+      url: "https://www.bcodesolutions.tech:5000/api/v1/persons",
       contentType: "application/json",
       data: JSON.stringify(jsonData),
       success: function(response) {

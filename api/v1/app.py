@@ -46,4 +46,5 @@ if __name__ == "__main__":
         host = '0.0.0.0'
     if not port:
         port = '5000'
-    app.run(host=host, port=port, threaded=True)
+    context = ('/home/bcode/Desktop/alxFinalProject/fullchain.pem','/home/bcode/Desktop/alxFinalProject/privkey.pem')
+    app.run(ssl_context=context, host=host, port=port, threaded=True)

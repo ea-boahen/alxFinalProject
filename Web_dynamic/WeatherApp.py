@@ -47,4 +47,5 @@ def hbnb_filters2(the_id=None):
 if __name__ == "__main__":
     """
     MAIN Flask App"""
-    app.run(host=host, port=port)
+    context = ('/etc/letsencrypt/live/www.bcodesolutions.tech/fullchain.pem','/etc/letsencrypt/live/www.bcodesolutions.tech/privkey.pem')
+    app.run(ssl_context=context, host=host, port=port)

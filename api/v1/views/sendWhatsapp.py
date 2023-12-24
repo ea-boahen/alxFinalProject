@@ -94,7 +94,7 @@ def job():
 # sudo kill -9 22184
 # nohup python3 sendWhatsapp.py > output.log 2>&1
 # Schedule the job to run every day at a specific time (e.g., 10:00 AM)
-schedule.every().day.at("02:59").do(job)
+schedule.every().day.at("06:00").do(job)
 
 # Run the script indefinitely
 while True:
