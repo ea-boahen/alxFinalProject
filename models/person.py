@@ -15,13 +15,14 @@ class Person(BaseModel, Base):
         lastname = Column(String(128), nullable=False)
         email = Column(String(128), nullable=False)
         contact = Column(String(128), nullable=False)
+        long = Column(Numeric(precision=10, scale=5), nullable=False)
+        lat = Column(Numeric(precision=10, scale=5), nullable=False)
 
     else:
         firstname = ""
         lastname = ""
         email = ""
         contact = ""
-        
 
     def __init__(self, *args, **kwargs):
         """initializes person"""
