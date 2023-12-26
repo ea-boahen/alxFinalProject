@@ -1,5 +1,3 @@
-let longitude
-let latitude
 function formatDateToArrayWithDay(date) {
   // Ensure that the input is a Date object
   if (!(date instanceof Date)) {
