@@ -4,6 +4,7 @@
 import os
 from twilio.rest import Client
 import smtplib
+from os import getenv
 # from person import get_persons
 import schedule
 import time
@@ -42,7 +43,7 @@ def send_email(temperature, disc, firstname, email):
         server.starttls()
         server.login("ea.boahen2015@gmail.com", "bvrm iyor jzej ntfi")
         # server.ehlo()
-        
+
         # # Call connect() before attempting to send an email
         # server.connect('smtp.gmail.com', 587)
         # server.ehlo()
@@ -61,14 +62,14 @@ def send_email(temperature, disc, firstname, email):
         # msg['From'] = "ea.boahen2015@gmail.com"
         # msg['To'] = "boahen@biblesociety-ghana.org"   
         
-            # msg = f"Subject: {subject}\n\n{body}"
-
-        server.sendmail("ea.boahen@gmail.com", email, msg.as_bytes())
+        # msg = f"Subject: {subject}\n\n{body}"
+        if email is not None:
+	        server.sendmail("ea.boahen@gmail.com", email, msg.as_bytes())
 
 
 def job():
     try:
-        response = requests.get("http://127.0.0.1:5000/api/v1/persons")
+        response = requests.get("https://www.bcodesolutions.tech:5000/api/v1/persons", verify =False)
         response.raise_for_status()  # Check for HTTP errors
 
         data = response.json()
@@ -90,11 +91,13 @@ def job():
         # whatsApp('42 degrees')
         send_email(tempDeg, disc, firstname, email)
     
-# job()
+#job()
 # sudo kill -9 22184
 # nohup python3 sendWhatsapp.py > output.log 2>&1
+SEND_EMAIL = getenv('SEND_EMAIL')
+#print(SEND_EMAIL)
 # Schedule the job to run every day at a specific time (e.g., 10:00 AM)
-schedule.every().day.at("06:00").do(job)
+schedule.every().day.at(SEND_EMAIL).do(job)
 
 # Run the script indefinitely
 while True:
