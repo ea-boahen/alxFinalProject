@@ -1,5 +1,0 @@
-nohup: ignoring input
-Traceback (most recent call last):
-  File "/home/bcode/Desktop/alxFinalProject/api/v1/views/sendWhatsapp.py", line 5, in <module>
-    from twilio.rest import Client
-ModuleNotFoundError: No module named 'twilio'
