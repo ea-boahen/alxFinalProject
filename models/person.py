@@ -4,23 +4,25 @@ import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String
 
 
 class Person(BaseModel, Base):
-    """Representation of city """
+    """Representation of Person"""
     if models.storage_t == "db":
-        __tablename__ = 'cities'
-        contact_id = Column(String(60), primary_key=True)
-        name = Column(String(128), nullable=False)
+        __tablename__ = 'person'
+        firstname = Column(String(128), nullable=False)
+        lastname = Column(String(128), nullable=False)
+        email = Column(String(128), nullable=False)
         contact = Column(String(128), nullable=False)
 
     else:
-        Contact_id = ""
-        name = ""
+        firstname = ""
+        lastname = ""
+        email = ""
         contact = ""
+        
 
     def __init__(self, *args, **kwargs):
-        """initializes city"""
+        """initializes person"""
         super().__init__(*args, **kwargs)

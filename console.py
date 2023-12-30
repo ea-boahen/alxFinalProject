@@ -4,22 +4,23 @@
 import cmd
 from datetime import datetime
 import models
-from models.amenity import Amenity
+from models.person import Person
 from models.base_model import BaseModel
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+#from models.city import City
+#from models.place import Place
+#from models.review import Review
+#from models.state import State
+#from models.user import User
 import shlex  # for splitting the line along spaces except in double quotes
 
-classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
-           "Place": Place, "Review": Review, "State": State, "User": User}
+classes = {"Person": Person, "BaseModel": BaseModel}
+#, "City": City,
+#          "Place": Place, "Review": Review, "State": State, "User": User}
 
 
-class HBNBCommand(cmd.Cmd):
-    """ HBNH console """
-    prompt = '(hbnb) '
+class WACommand(cmd.Cmd):
+    """ WeatherApp console """
+    prompt = 'WA-> '
 
     def do_EOF(self, arg):
         """Exits console"""
@@ -160,5 +161,47 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def default(self, line):
+        words = line.split(".")
+        class_name = words[0]
+        if class_name in classes and len(words) > 1:
+            command = words[1]
+            if command in ['all()', 'count()']:
+                if command == "all()":
+                    self.do_all(class_name)
+                elif command == "count()":
+                    self.count(class_name)
+            else:
+                if "show" in command:
+                    my_id = command.split("(")[1].strip(")")
+                    concat = class_name + " " + my_id
+                    self.do_show(concat)
+                elif "destroy" in command:
+                    my_id = command.split("(")[1].strip(')"')
+                    concat = class_name + " " + my_id
+                    self.do_destroy(concat)
+                elif "update" in command:
+                    cn = class_name
+                    if "{" not in command.split("(")[1]:
+                        myd = command.split("(")[1].split(", ")[0].strip(')"')
+                        n_at = command.split("(")[1].split(", ")[1].strip(')"')
+                        v_at = command.split("(")[1].split(", ")[2].strip(')"')
+                        concat = cn + " " + myd + " " + n_at + " " + v_at
+                        self.do_update(concat)
+                    elif len(command.split("(")[1].split(", {")) == 2:
+                        md = command.split("(")[1].split(", {")[0].strip(')"')
+                        s = command.split("(")[1].split(", {")[1].strip(")")
+                        dic = eval("{" + s)
+                        for atr, val in dic.items():
+                            concat = cn + " " + md + " " + atr + " " + str(val)
+                            self.do_update(concat)
+
+    def count(self, class_name):
+        objs = models.storage.all()
+        num_objs = 0
+        for name_id in objs.keys():
+            if name_id.split(".")[0] == class_name:
+                num_objs += 1
+        print(num_objs)
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    WACommand().cmdloop()

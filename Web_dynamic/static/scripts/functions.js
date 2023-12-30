@@ -27,3 +27,34 @@ function convertUnixTimestampToDateTime(timestamp) {
   return new Date(timestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
 }
 
+function submitForm() {
+  // Get values from the form
+  var firstname = $('#firstname').val();
+  var lastname = $('#lastname').val();
+  var contact = $('#contact').val();
+  var email = $('#email').val();
+
+  // Construct JSON data
+  var jsonData = {
+      "firstname": firstname,
+      "lastname": lastname,
+      "contact": contact,
+      "email": email
+  };
+
+  // Perform AJAX POST request
+  $.ajax({
+      type: "POST",
+      url: "http://127.0.0.1:5000/api/v1/persons",
+      contentType: "application/json",
+      data: JSON.stringify(jsonData),
+      success: function(response) {
+          console.log("Success:", response);
+          // Handle success response as needed
+      },
+      error: function(error) {
+          console.error("Error:", error);
+          // Handle error as needed
+      }
+  });
+}
