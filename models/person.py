@@ -4,7 +4,7 @@ import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Numeric
 
 
 class Person(BaseModel, Base):
@@ -15,8 +15,8 @@ class Person(BaseModel, Base):
         lastname = Column(String(128), nullable=False)
         email = Column(String(128), nullable=False)
         contact = Column(String(128), nullable=False)
-        long = Column(Numeric(precision=10, scale=5), nullable=False)
-        lat = Column(Numeric(precision=10, scale=5), nullable=False)
+        long = Column(Numeric(precision=10, scale=10), nullable=False)
+        lat = Column(Numeric(precision=10, scale=10), nullable=False)
 
     else:
         firstname = ""

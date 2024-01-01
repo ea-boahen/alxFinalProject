@@ -82,8 +82,10 @@ def job():
         firstname = person_info.get('firstname')
         email = person_info.get('email')
         contact = person_info.get('contact')
+        longitude = person_info.get('long')
+        latitude = person_info.get('lat')
         
-        url = "https://api.openweathermap.org/data/3.0/onecall?lat=5.6037168&lon=-0.1869644&units=metric&appid=ae35ec2f9f983d5fa9a21c085bd025c4"
+        url = f'https://api.openweathermap.org/data/3.0/onecall?lat={latitude}&lon={longitude}&units=metric&appid=ae35ec2f9f983d5fa9a21c085bd025c4'
         weather = WeatherData(url)
         tempDeg= weather.get_temp()
         disc = weather.get_weather_description()
