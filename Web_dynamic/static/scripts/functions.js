@@ -1,18 +1,5 @@
-if ("geolocation" in navigator) {
-  // Geolocation is available
-  (async function() {
-    try {
-      const position = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-      });
-
-      // The user's location is available in the 'position' object
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
-	  }
-	}
-}
-
+let longitude
+let latitude
 function formatDateToArrayWithDay(date) {
   // Ensure that the input is a Date object
   if (!(date instanceof Date)) {
