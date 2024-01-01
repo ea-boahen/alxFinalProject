@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-#!/usr/bin/python3
+
 """
 Flask App that integrates with AirBnB static HTML Template
 """
