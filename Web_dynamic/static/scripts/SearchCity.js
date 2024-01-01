@@ -1,4 +1,4 @@
-let temp;
+//let temp;
 
 
 // Function to be executed on click
