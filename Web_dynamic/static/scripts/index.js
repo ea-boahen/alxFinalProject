@@ -124,7 +124,7 @@ function fetchWeatherData () {
 			
 			homeCaptionElement = document.querySelector('.location');
 			if (homeCaptionElement) {
-				console.log(cityname);
+				console.log(cityName);
 				homeCaptionElement.textContent = cityName;
 			}
 			// cWeatherIcon = document.querySelector('weather-icon');
