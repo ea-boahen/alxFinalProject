@@ -18,7 +18,7 @@ function handleClick() {
 }
 
 // Get the div element by its class name
-	const searchDiv = document.querySelector('.home-search');
+const searchDiv = document.querySelector('.home-search');
 
 // Add a click event listener to the div
 if (searchDiv) {

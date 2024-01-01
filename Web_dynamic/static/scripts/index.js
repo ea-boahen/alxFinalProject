@@ -36,7 +36,7 @@ if ("geolocation" in navigator) {
 
       // Now, you can use these coordinates to make requests to location-based services or display the user's location on a map.
 	  // Select the <p> element by its class name
-		homeCaptionElement = document.querySelector('.location');
+		//homeCaptionElement = document.querySelector('.location');
 		apiUrlcity = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=${apiKey}`;
 		// Make a GET request to the API
 		fetch(apiUrlcity)
@@ -51,7 +51,7 @@ if ("geolocation" in navigator) {
 			  cityName = firstLocation.name;
 
 			  // Assign the city name to the <p> element
-			  homeCaptionElement.textContent = cityName;
+			  //homeCaptionElement.textContent = cityName;
 			  
 			  // Use the city name as needed (e.g., display it)
 			  console.log(`City Name: ${cityName}`);
@@ -122,7 +122,11 @@ function fetchWeatherData () {
 			console.log (currentWeather[0].description + "<----this");
 				
 			
-			
+			homeCaptionElement = document.querySelector('.location');
+			if (homeCaptionElement) {
+				console.log(cityname);
+				homeCaptionElement.textContent = cityName;
+			}
 			// cWeatherIcon = document.querySelector('weather-icon');
 			// console.log ("1-->" + temperatureElement.textContent);
 			
